@@ -8,4 +8,8 @@ USER 1001
 
 #RUN /usr/libexec/s2i/assemble
 CMD /usr/libexec/s2i/run
-#COMMIT temp.builder.openshift.io/angular-test/angular-app-1:5f4e49f7
+
+# Add the proxy instruction
+COPY ./proxy-directive.conf /etc/httpd/conf.modules.d
+RUN cat /etc/httpd/conf.modules.d/proxy-directive.conf /etc/httpd/conf.modules.d/00-proxy.conf > /etc/httpd/conf.modules.d/01-proxy.conf
+RUN rm /etc/httpd/conf.modules.d/00-proxy.conf
