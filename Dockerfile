@@ -1,8 +1,11 @@
 FROM openshift/httpd:2.4
 
 USER root
-COPY my-project-name/* /tmp/src
-RUN chown -R 1001:0 /tmp/src
+#COPY my-project-name/* /tmp/src
+
+
+COPY my-project-name/* /opt/rh/httpd24/root/var/www/html/
+#RUN chown -R 1001:0 /tmp/src
 
 USER 1001
 
